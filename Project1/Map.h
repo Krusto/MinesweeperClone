@@ -31,7 +31,7 @@ namespace Minesweeper {
 		const void Draw() const;
 		void Fill(int8_t symbol);
 
-		bool ProcessClick(Point position,uint32_t* movesLeft,Point direction = Point{});
+		bool ProcessClick(Point position,int* movesLeft);
 		bool IsMine(Point position) const { return m_MineData[position.x][position.y] == '*'; }
 		uint32_t CountAdjacentMines(Point position);
 	private:

@@ -6,14 +6,13 @@
 int main() {
 
 	ShowConsoleCursor(false);
-	system("mode 30,30");
+	system("mode 35,20");
 
 
 	Minesweeper::Game game;
 	game.Init();
 
-	bool exit = false;
-	while (!exit) {
+	while (!game.IsReadyToExit()) {
 		game.Update();
 	}
 

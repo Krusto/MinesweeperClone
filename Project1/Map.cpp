@@ -59,7 +59,7 @@ namespace Minesweeper {
 					std::cout << m_MineData[x][y];
 				}
 				else {
-					std::cout<<' ';
+					std::cout<<'-';
 				}
 
 			}
@@ -92,7 +92,7 @@ namespace Minesweeper {
 		}
 	}
 
-	bool Map::ProcessClick(Point position, uint32_t* movesLeft, Point direction)
+	bool Map::ProcessClick(Point position, int* movesLeft)
 	{
 		if (m_Data[position.x][position.y] != '#')
 			return false;
@@ -105,7 +105,7 @@ namespace Minesweeper {
 			}
 			else {
 				auto count = CountAdjacentMines(position);
-				*movesLeft--;
+				(*movesLeft) = (*movesLeft)-1;
 
 				m_Data[position.x][position.y] = count + '0';
 				
@@ -124,7 +124,7 @@ namespace Minesweeper {
 						Point newPos = position + neighbours[i];
 						if (IsValid(newPos))
 							if (!IsMine(newPos)) {
-								ProcessClick(newPos, movesLeft, neighbours[i]);
+								ProcessClick(newPos, movesLeft);
 							}
 					}
 				}
