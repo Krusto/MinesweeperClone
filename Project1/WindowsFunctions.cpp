@@ -1,34 +1,33 @@
 ﻿#include "WindowsFunctions.h"
 
-void GotoXY(SHORT x, SHORT y)
+void GotoXY(SHORT x, SHORT y)// функция която казва на курсора да отиде на x,y
 {
-	COORD cursorPosition;
-	cursorPosition.X = x;
-	cursorPosition.Y = y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition);
+	COORD cursorPosition; // точка с позицията на курсора
+	cursorPosition.X = x; // задаваме х на курсора
+	cursorPosition.Y = y; // задаваме у на курсора
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPosition); // взимаме сегашната конзола и казваме да смени позицията на курсора
 
 }
 
-POINT GetCursorPosition()
+POINT GetCursorPosition() // функция която взима позицията на курсора
 {
-	POINT pos{};
-	GetCursorPos(&pos);
-	return pos;
+	POINT pos{}; // точка на която е курсора
+	GetCursorPos(&pos); // взимаме позицията на курсора
+	return pos; // връщаме резултат който е позицията на курсора
 }
 
-void ClearScreen()
+void ClearScreen()// функция която изчиства дисплея
 {
-	GotoXY(0, 0);
-	system("cls");
+	system("cls"); // задаваме команда в конзолата която чисти екрана
 }
 
-void ShowConsoleCursor(bool showFlag)
+void ShowConsoleCursor(bool showFlag)// функция която задава флаг на курсора дали да се вижда
 {
-	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE); // взимаме сегашната конзола
 
-	CONSOLE_CURSOR_INFO     cursorInfo;
+	CONSOLE_CURSOR_INFO     cursorInfo; // структура която държи инфо за курсора
 
-	GetConsoleCursorInfo(out, &cursorInfo);
-	cursorInfo.bVisible = showFlag; // set the cursor visibility
-	SetConsoleCursorInfo(out, &cursorInfo);
+	GetConsoleCursorInfo(out, &cursorInfo); // взимаме информация за курсора
+	cursorInfo.bVisible = showFlag; // задаваме флаг дали да се вижда курсора
+	SetConsoleCursorInfo(out, &cursorInfo); // казваме конзолата за сложи тази информация на курсора
 }

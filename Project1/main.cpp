@@ -1,19 +1,20 @@
-#include <iostream>
-#include <Windows.h>
-#include "Minesweeper.h"
-#include "WindowsFunctions.h"
+#include <iostream>   // библиотека за input/output в конзолата
+#include <Windows.h>  // библиотека използвана за манипулиране на конзолата
+#include "Minesweeper.h" // библиотека в която се намира нашата игра
+#include "WindowsFunctions.h" //библиотека в която са дефинирани функции за манипулиране на конзолата
 
 int main() {
 
-	ShowConsoleCursor(false);
-	system("mode 35,20");
+	ShowConsoleCursor(false); // тук казваме на конзолата да скрие курсора
+	system("mode 35,20"); // променяме големината на конзолата да бъде 35х20
 
 
-	Minesweeper::Game game;
-	game.Init();
+	Minesweeper::Game game; // създаваме обект от тип игра
+	game.Init(); // инициализираме играта
 
-	while (!game.IsReadyToExit()) {
-		game.Update();
+	while (!game.IsReadyToExit()) { // проверяваме дали играта не
+                                    //е приключила и изпълняваме кода докато условието е истина
+		game.Update();              //казваме на играта да се ъпдейтне
 	}
 
 }
